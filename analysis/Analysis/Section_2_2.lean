@@ -77,9 +77,9 @@ lemma Nat.add_succ (n m:Nat) : n + (m++) = (n + m)++ := by
 /-- n++ = n + 1 (Why?). Compare with Mathlib's `Nat.succ_eq_add_one` -/
 theorem Nat.succ_eq_add_one (n:Nat) : n++ = n + 1 := by
   calc
-    n++ = (n + 0)++ := sorry
-    _ = n + 0++ := sorry
-    _ = n + 1 := sorry
+    n++ = (n + 0)++ := by rw [add_zero]
+    _ = n + 0++ := by rw [add_succ]
+    _ = n + 1 := by rw [zero_succ]
 
 /-- Proposition 2.2.4 (Addition is commutative). Compare with Mathlib's `Nat.add_comm` -/
 theorem Nat.add_comm (n m:Nat) : n + m = m + n := by
@@ -94,8 +94,8 @@ theorem Nat.add_comm (n m:Nat) : n + m = m + n := by
     Compare with Mathlib's `Nat.add_assoc` -/
 theorem Nat.add_assoc (a b c:Nat) : (a + b) + c = a + (b + c) := by
   revert c ; apply induction
-  ⬝ sorry
-  ⬝ sorry
+  . sorry
+  . sorry
 
 /-- Proposition 2.2.6 (Cancellation law)
     Compare with Mathlib's `Nat.add_left_cancel` -/
